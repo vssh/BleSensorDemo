@@ -1,10 +1,14 @@
 <resources>
     <string name="app_name">BleSensorDemo</string>
-    <string name="cold_junction_temperature">Cold Junction Temperature</string>
-    <string name="temperature_1">Temperature 1</string>
-    <string name="temperature_2">Temperature 2</string>
-    <string name="temperature_3">Temperature 3</string>
-    <string name="temperature_4">Temperature 4</string>
-    <string name="temperature_5">Temperature 5</string>
-    <string name="update_interval_seconds">Update Interval (seconds)</string>
+    <string name="cold_junction_temperature">Cold Junction Temperature (%d C)</string>
+    <string name="temperature_1">Temperature 1 (%d C)</string>
+    <string name="temperature_2">Temperature 2 (%d C)</string>
+    <string name="temperature_3">Temperature 3 (%d C)</string>
+    <string name="temperature_4">Temperature 4 (%d C)</string>
+    <string name="temperature_5">Temperature 5 (%d C)</string>
+    <string name="update_interval_seconds">Update Interval (%d seconds)</string>
+    <string name="cooktop_power">Cooktop power (%dW)</string>
+    <string name="food_weight">Food weight (%f kg)</string>
+    <string name="switch_fragment">Switch fragment</string>
+    <string name="food_temperature">Food temperature</string>
 </resources>

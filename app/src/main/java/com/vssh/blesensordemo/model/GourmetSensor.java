@@ -1,4 +1,4 @@
-package com.vssh.blesensordemo;
+package com.vssh.blesensordemo.model;
 
 import android.content.Context;
 import android.os.Handler;

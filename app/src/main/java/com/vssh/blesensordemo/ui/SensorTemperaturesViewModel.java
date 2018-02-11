@@ -5,7 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
-import com.vssh.blesensordemo.GourmetSensor;
+import com.vssh.blesensordemo.model.GourmetSensor;
 
 /**
  * Created by varun on 11.02.18.

@@ -19,7 +19,7 @@ import android.os.ParcelUuid;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.vssh.blesensordemo.GourmetSensor;
+import com.vssh.blesensordemo.model.GourmetSensor;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

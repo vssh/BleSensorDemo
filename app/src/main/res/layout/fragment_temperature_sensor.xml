@@ -3,76 +3,97 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
+            android:id="@+id/cold_junc_temp_label"
             android:text="@string/cold_junction_temperature"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <android.support.v7.widget.AppCompatSeekBar
             android:id="@+id/cold_junc_temp"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_marginBottom="16dp"
             android:max="150"
             android:progress="30"/>
 
         <TextView
+            android:id="@+id/temp1_label"
             android:text="@string/temperature_1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <android.support.v7.widget.AppCompatSeekBar
             android:id="@+id/temp1"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_marginBottom="16dp"
             android:max="150"
             android:progress="30"/>
 
         <TextView
+            android:id="@+id/temp2_label"
             android:text="@string/temperature_2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <android.support.v7.widget.AppCompatSeekBar
             android:id="@+id/temp2"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_marginBottom="16dp"
             android:max="150"
             android:progress="30"/>
 
         <TextView
+            android:id="@+id/temp3_label"
             android:text="@string/temperature_3"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <android.support.v7.widget.AppCompatSeekBar
             android:id="@+id/temp3"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_marginBottom="16dp"
             android:max="150"
             android:progress="30"/>
 
         <TextView
+            android:id="@+id/temp4_label"
             android:text="@string/temperature_4"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <android.support.v7.widget.AppCompatSeekBar
             android:id="@+id/temp4"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_marginBottom="16dp"
             android:max="150"
             android:progress="30"/>
 
         <TextView
+            android:id="@+id/temp5_label"
             android:text="@string/temperature_5"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <android.support.v7.widget.AppCompatSeekBar
             android:id="@+id/temp5"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_marginBottom="16dp"
             android:max="150"
             android:progress="30"/>
 
         <TextView
+            android:id="@+id/update_interval_label"
             android:text="@string/update_interval_seconds"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <SeekBar
@@ -80,6 +101,7 @@
             style="@style/Widget.AppCompat.SeekBar.Discrete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:max="10"
             android:progress="1" />
 
