@@ -76,11 +76,13 @@ public class GattConnector {
         gattCallback = new GattCallback();
         gattServer = manager.openGattServer(context, gattCallback);
 
+        // temperature characteristic that notifies on change
         tempCharacteristic = new BluetoothGattCharacteristic(UUID.fromString(TEMPERATURE_CHARACTERISTIC_UUID), BluetoothGattCharacteristic.PROPERTY_NOTIFY, 0);
         tempClientConfigDescriptor = new BluetoothGattDescriptor(new UUID(Long.parseLong(CLIENT_CONFIG_DESCRIPTOR_UUID, 16) << 32 | 0x1000, GATT_SIG_BITS), BluetoothGattDescriptor.PERMISSION_WRITE);
         tempClientConfigDescriptor.setValue(new byte[] {0x1, 0x0});
         tempCharacteristic.addDescriptor(tempClientConfigDescriptor);
 
+        // characteristic to allow setting update rate
         tempMonitorCharacteristic = new BluetoothGattCharacteristic(new UUID(Long.parseLong(TEMPERATURE_MONITOR_CHARACTERISTIC_UUID, 16) << 32 | 0x1000, GATT_SIG_BITS),
                 BluetoothGattCharacteristic.PROPERTY_WRITE, BluetoothGattCharacteristic.PERMISSION_WRITE);
 
