@@ -19,6 +19,8 @@ import android.os.ParcelUuid;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.vssh.blesensordemo.GourmetSensor;
+
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.HashSet;
@@ -32,41 +34,44 @@ import java.util.UUID;
 public class GattConnector {
     private static final long GATT_SIG_BITS = 0x800000805f9b34fbL;
 
-    private static String SERIAL_NUMBER_UUID = "2a25";
-    private static String SYSTEM_ID_UUID = "2a23";
-    private static String DEVICE_INFO_SERVICE_UUID = "180a";
-    private static String TEMPERATURE_SERVICE_UUID = "f000aa00-0451-4000-b000-000000000000";
-    private static String TEMPERATURE_CHARACTERISTIC_UUID = "f000aa01-0451-4000-b000-000000000000";
-    private static String TEMPERATURE_MONITOR_CHARACTERISTIC_UUID = "2a21";
-    private static String CLIENT_CONFIG_DESCRIPTOR_UUID = "2902";
+    private static final String SERIAL_NUMBER_UUID = "2a25";
+    private static final String SYSTEM_ID_UUID = "2a23";
+    private static final String DEVICE_INFO_SERVICE_UUID = "180a";
+    private static final String TEMPERATURE_SERVICE_UUID = "f000aa00-0451-4000-b000-000000000000";
+    private static final String TEMPERATURE_CHARACTERISTIC_UUID = "f000aa01-0451-4000-b000-000000000000";
+    private static final String TEMPERATURE_MONITOR_CHARACTERISTIC_UUID = "2a21";
+    private static final String CLIENT_CONFIG_DESCRIPTOR_UUID = "2902";
 
     private GattCallback gattCallback;
-    BluetoothAdapter bluetoothAdapter;
-    Context context;
-    BluetoothLeAdvertiser advertiser;
-    BluetoothGattServer gattServer;
+    private BluetoothAdapter bluetoothAdapter;
+    private Context context;
+    private BluetoothLeAdvertiser advertiser;
+    private BluetoothGattServer gattServer;
 
-    BluetoothGattService temperatureService;
-    BluetoothGattCharacteristic tempCharacteristic;
-    BluetoothGattDescriptor tempClientConfigDescriptor;
-    BluetoothGattCharacteristic tempMonitorCharacteristic;
+    private BluetoothGattService temperatureService;
+    private BluetoothGattCharacteristic tempCharacteristic;
+    private BluetoothGattDescriptor tempClientConfigDescriptor;
+    private BluetoothGattCharacteristic tempMonitorCharacteristic;
 
-    BluetoothGattService deviceInfoService;
-    BluetoothGattCharacteristic serialCharacteristic;
-    BluetoothGattCharacteristic sysCharacteristic;
+    private BluetoothGattService deviceInfoService;
+    private BluetoothGattCharacteristic serialCharacteristic;
+    private BluetoothGattCharacteristic sysCharacteristic;
+
+    private GourmetSensor.SensorUpdateIntervalListener intervalListener;
 
     private short tempUpdateRateinSec = 0;
 
     Set<BluetoothDevice> connectedDevices = new HashSet<>();
 
-    public GattConnector(Context context) {
+    public GattConnector(Context context, GourmetSensor.SensorUpdateIntervalListener intervalListener) {
         this.context = context;
+        this.intervalListener = intervalListener;
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         setUpServer();
     }
 
-    public void setUpServer() {
+    private void setUpServer() {
         BluetoothManager manager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
         gattCallback = new GattCallback();
         gattServer = manager.openGattServer(context, gattCallback);
@@ -155,7 +160,17 @@ public class GattConnector {
     }
 
     public void stopAdvertising() {
-        advertiser.stopAdvertising(null);
+        advertiser.stopAdvertising(new AdvertiseCallback() {
+            @Override
+            public void onStartSuccess(AdvertiseSettings settingsInEffect) {
+                super.onStartSuccess(settingsInEffect);
+            }
+
+            @Override
+            public void onStartFailure(int errorCode) {
+                super.onStartFailure(errorCode);
+            }
+        });
     }
 
     public void setTempValues(Short coldJuctionTemp, Short temp1, Short temp2, Short temp3, Short temp4, Short temp5, Short batteryVoltage) {
@@ -173,7 +188,7 @@ public class GattConnector {
     }
 
     public void sendTempNotification() {
-        int notifyVal = ByteBuffer.wrap(tempClientConfigDescriptor.getValue()).order(ByteOrder.LITTLE_ENDIAN).getInt();
+        short notifyVal = ByteBuffer.wrap(tempClientConfigDescriptor.getValue()).order(ByteOrder.LITTLE_ENDIAN).getShort();
         if(notifyVal > 0) {
             for(BluetoothDevice device : connectedDevices) {
                 gattServer.notifyCharacteristicChanged(device, tempCharacteristic, false);
@@ -232,6 +247,7 @@ public class GattConnector {
 
                     tempUpdateRateinSec = num;
                     tempMonitorCharacteristic.setValue(value);
+                    intervalListener.setUpdateInterval(num);
                 }
                 if(responseNeeded) {
                     gattServer.sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, 0, null);
@@ -270,8 +286,11 @@ public class GattConnector {
             if(descriptor.getUuid().equals(tempClientConfigDescriptor.getUuid())) {
                 //TODO: should actually save notification state per device
                 tempClientConfigDescriptor.setValue(value);
+                gattServer.sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, 0, null);
             }
-            gattServer.sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, 0, null);
+            else {
+                gattServer.sendResponse(device, requestId, BluetoothGatt.GATT_REQUEST_NOT_SUPPORTED, 0, null);
+            }
         }
 
         @Override

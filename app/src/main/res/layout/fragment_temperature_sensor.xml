@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:text="@string/cold_junction_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <android.support.v7.widget.AppCompatSeekBar
+            android:id="@+id/cold_junc_temp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:max="150"
+            android:progress="30"/>
+
+        <TextView
+            android:text="@string/temperature_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <android.support.v7.widget.AppCompatSeekBar
+            android:id="@+id/temp1"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:max="150"
+            android:progress="30"/>
+
+        <TextView
+            android:text="@string/temperature_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <android.support.v7.widget.AppCompatSeekBar
+            android:id="@+id/temp2"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:max="150"
+            android:progress="30"/>
+
+        <TextView
+            android:text="@string/temperature_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <android.support.v7.widget.AppCompatSeekBar
+            android:id="@+id/temp3"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:max="150"
+            android:progress="30"/>
+
+        <TextView
+            android:text="@string/temperature_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <android.support.v7.widget.AppCompatSeekBar
+            android:id="@+id/temp4"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:max="150"
+            android:progress="30"/>
+
+        <TextView
+            android:text="@string/temperature_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <android.support.v7.widget.AppCompatSeekBar
+            android:id="@+id/temp5"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:max="150"
+            android:progress="30"/>
+
+        <TextView
+            android:text="@string/update_interval_seconds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <SeekBar
+            android:id="@+id/update_interval"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="10"
+            android:progress="1" />
+
+    </LinearLayout>
+</layout>

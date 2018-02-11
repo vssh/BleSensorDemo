@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">BleSensorDemo</string>
+    <string name="cold_junction_temperature">Cold Junction Temperature</string>
+    <string name="temperature_1">Temperature 1</string>
+    <string name="temperature_2">Temperature 2</string>
+    <string name="temperature_3">Temperature 3</string>
+    <string name="temperature_4">Temperature 4</string>
+    <string name="temperature_5">Temperature 5</string>
+    <string name="update_interval_seconds">Update Interval (seconds)</string>
 </resources>
