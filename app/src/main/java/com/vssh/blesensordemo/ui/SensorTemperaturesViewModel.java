@@ -26,27 +26,27 @@ public class SensorTemperaturesViewModel extends AndroidViewModel {
         sensor.getValue().setUpdateInterval(interval);
     }
 
-    void setColdJunctionTemp(short temp) {
+    void setColdJunctionTemp(double temp) {
         sensor.getValue().setColdJunctionTemperature(temp);
     }
 
-    void setTemp1(short temp) {
+    void setTemp1(double temp) {
         sensor.getValue().setTemperature1(temp);
     }
 
-    void setTemp2(short temp) {
+    void setTemp2(double temp) {
         sensor.getValue().setTemperature2(temp);
     }
 
-    void setTemp3(short temp) {
+    void setTemp3(double temp) {
         sensor.getValue().setTemperature3(temp);
     }
 
-    void setTemp4(short temp) {
+    void setTemp4(double temp) {
         sensor.getValue().setTemperature4(temp);
     }
 
-    void setTemp5(short temp) {
+    void setTemp5(double temp) {
         sensor.getValue().setTemperature5(temp);
     }
 

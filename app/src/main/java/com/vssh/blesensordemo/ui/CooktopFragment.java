@@ -76,10 +76,10 @@ public class CooktopFragment extends Fragment {
             }
         });
 
-        viewModel.foodTemperature.observe(this, new Observer<Float>() {
+        viewModel.foodTemperature.observe(this, new Observer<Double>() {
             @Override
-            public void onChanged(@Nullable Float aFloat) {
-                binding.temp.setText(Float.toString(aFloat));
+            public void onChanged(@Nullable Double aDouble) {
+                binding.temp.setText(Double.toString(aDouble));
             }
         });
     }

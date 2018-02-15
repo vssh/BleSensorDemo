@@ -10,7 +10,7 @@ public class Food {
     // in Kg
     private float weight = 0;
     // in C
-    private float temperature = 20;
+    private double temperature = 20;
     // specific heat capacity assume same as water
     private int heatCap = 4200;
     // assumed value; would depend on conductivity, volume, surface area and relative conductivities of media
@@ -26,7 +26,7 @@ public class Food {
 
     private HeatTransferInterface heatTransferInterface;
 
-    public Food(float weight, int temperature, HeatTransferInterface heatTransferInterface, GourmetSensor sensor) {
+    public Food(float weight, double temperature, HeatTransferInterface heatTransferInterface, GourmetSensor sensor) {
         this.weight = weight;
         this.temperature = temperature;
         this.heatTransferInterface = heatTransferInterface;
@@ -64,20 +64,20 @@ public class Food {
         double deltaEnergy = inputEnergy - energyLoss;
 
         // get change in temperature
-        float deltaTemp = (float) deltaEnergy/(weight*heatCap);
+        double deltaTemp = deltaEnergy/(weight*heatCap);
 
-        float newTemp = temperature + deltaTemp;
+        double newTemp = temperature + deltaTemp;
 
         heatTransferInterface.setNewTemp(newTemp);
 
         temperature = newTemp;
 
         // set all temperatures the same. small variations can be simulated easily with randomizing a small added component
-        sensor.setTemperature1((short) temperature);
-        sensor.setTemperature2((short) temperature);
-        sensor.setTemperature3((short) temperature);
-        sensor.setTemperature4((short) temperature);
-        sensor.setTemperature5((short) temperature);
+        sensor.setTemperature1(temperature);
+        sensor.setTemperature2(temperature);
+        sensor.setTemperature3(temperature);
+        sensor.setTemperature4(temperature);
+        sensor.setTemperature5(temperature);
 
     }
 
@@ -87,6 +87,6 @@ public class Food {
 
     public interface HeatTransferInterface {
         int getInputHeat();
-        void setNewTemp(float temperature);
+        void setNewTemp(double temperature);
     }
 }

@@ -62,7 +62,7 @@ public class SensorTemperaturesFragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 if (b) {
-                    viewModel.setColdJunctionTemp((short) i);
+                    viewModel.setColdJunctionTemp((double) i);
                     binding.coldJuncTempLabel.setText(getString(R.string.cold_junction_temperature, i));
                 }
             }
@@ -82,7 +82,7 @@ public class SensorTemperaturesFragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 if(b) {
-                    viewModel.setTemp1((short) i);
+                    viewModel.setTemp1((double) i);
                     binding.temp1Label.setText(getString(R.string.temperature_1, i));
                 }
             }
@@ -102,7 +102,7 @@ public class SensorTemperaturesFragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 if(b) {
-                    viewModel.setTemp2((short) i);
+                    viewModel.setTemp2((double) i);
                     binding.temp2Label.setText(getString(R.string.temperature_2, i));
                 }
             }
@@ -122,7 +122,7 @@ public class SensorTemperaturesFragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 if(b) {
-                    viewModel.setTemp3((short) i);
+                    viewModel.setTemp3((double) i);
                     binding.temp3Label.setText(getString(R.string.temperature_3, i));
                 }
             }
@@ -142,7 +142,7 @@ public class SensorTemperaturesFragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 if(b) {
-                    viewModel.setTemp4((short) i);
+                    viewModel.setTemp4((double) i);
                     binding.temp4Label.setText(getString(R.string.temperature_4, i));
                 }
             }
@@ -162,7 +162,7 @@ public class SensorTemperaturesFragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 if(b) {
-                    viewModel.setTemp5((short) i);
+                    viewModel.setTemp5((double) i);
                     binding.temp5Label.setText(getString(R.string.temperature_5, i));
                 }
             }
@@ -184,22 +184,22 @@ public class SensorTemperaturesFragment extends Fragment {
                 binding.updateInterval.setProgress(gourmetSensor.getUpdateInterval());
                 binding.updateIntervalLabel.setText(getString(R.string.update_interval_seconds, gourmetSensor.getUpdateInterval()));
 
-                binding.coldJuncTemp.setProgress(gourmetSensor.getColdJunctionTemperature());
+                binding.coldJuncTemp.setProgress((int) gourmetSensor.getColdJunctionTemperature());
                 binding.coldJuncTempLabel.setText(getString(R.string.cold_junction_temperature, gourmetSensor.getColdJunctionTemperature()));
 
-                binding.temp1.setProgress(gourmetSensor.getTemperature1());
+                binding.temp1.setProgress((int) gourmetSensor.getTemperature1());
                 binding.temp1Label.setText(getString(R.string.temperature_1, gourmetSensor.getTemperature1()));
 
-                binding.temp2.setProgress(gourmetSensor.getTemperature2());
+                binding.temp2.setProgress((int) gourmetSensor.getTemperature2());
                 binding.temp2Label.setText(getString(R.string.temperature_2, gourmetSensor.getTemperature2()));
 
-                binding.temp3.setProgress(gourmetSensor.getTemperature3());
+                binding.temp3.setProgress((int) gourmetSensor.getTemperature3());
                 binding.temp3Label.setText(getString(R.string.temperature_3, gourmetSensor.getTemperature3()));
 
-                binding.temp4.setProgress(gourmetSensor.getTemperature4());
+                binding.temp4.setProgress((int) gourmetSensor.getTemperature4());
                 binding.temp4Label.setText(getString(R.string.temperature_4, gourmetSensor.getTemperature4()));
 
-                binding.temp5.setProgress(gourmetSensor.getTemperature5());
+                binding.temp5.setProgress((int) gourmetSensor.getTemperature5());
                 binding.temp5Label.setText(getString(R.string.temperature_5, gourmetSensor.getTemperature5()));
             }
         });

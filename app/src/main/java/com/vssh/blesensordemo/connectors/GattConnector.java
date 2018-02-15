@@ -108,7 +108,8 @@ public class GattConnector {
         byte[] sysIDArray;
         if (addressBytes.length == 6) {
             // sysId from MAC address according to GATT spec
-            sysIDArray = new byte[] {addressBytes[0], addressBytes[1], addressBytes[2], 0xE, 0xF, 0xF, 0xF, addressBytes[3], addressBytes[4], addressBytes[5]};
+
+            sysIDArray = new byte[] {addressBytes[0], addressBytes[1], addressBytes[2], (byte) 254, (byte) 255, addressBytes[3], addressBytes[4], addressBytes[5]};
         }
         else {
             sysIDArray = addressBytes;
@@ -178,12 +179,12 @@ public class GattConnector {
     public void setTempValues(Short coldJuctionTemp, Short temp1, Short temp2, Short temp3, Short temp4, Short temp5, Short batteryVoltage) {
         ByteBuffer buffer = ByteBuffer.allocate(14)
                 .order(ByteOrder.LITTLE_ENDIAN)
-                .putShort(coldJuctionTemp)
                 .putShort(temp1)
                 .putShort(temp2)
                 .putShort(temp3)
                 .putShort(temp4)
                 .putShort(temp5)
+                .putShort(coldJuctionTemp)
                 .putShort(batteryVoltage);
 
         tempCharacteristic.setValue(buffer.array());
